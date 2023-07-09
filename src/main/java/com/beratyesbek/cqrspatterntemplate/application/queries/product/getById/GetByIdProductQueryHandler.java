@@ -10,6 +10,8 @@ import com.beratyesbek.cqrspatterntemplate.persistance.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.beratyesbek.cqrspatterntemplate.application.mappers.ProductMapper.mapToProductDto;
+
 @Service
 @RequiredArgsConstructor
 public class GetByIdProductQueryHandler implements RequestHandler<GetByIdProductQuery, DataResult<ProductDto>> {
@@ -17,16 +19,8 @@ public class GetByIdProductQueryHandler implements RequestHandler<GetByIdProduct
     @Override
     public DataResult<ProductDto> handle(GetByIdProductQuery getByIdProductQuery) {
         return productRepository.findById(getByIdProductQuery.id())
-                .map(product -> (DataResult<ProductDto>) new SuccessDataResult<>(mapTo(product),""))
+                .map(product -> (DataResult<ProductDto>) new SuccessDataResult<>(mapToProductDto(product),""))
                 .orElse(new ErrorDataResult<>("Product Not Found"));
     }
 
-    private static ProductDto mapTo(Product product) {
-        return ProductDto.builder()
-                .name(product.getName())
-                .price(product.getPrice())
-                .description(product.getDescription())
-                .quantity(product.getQuantity())
-                .build();
-    }
 }

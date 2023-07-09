@@ -1,10 +1,11 @@
 package com.beratyesbek.cqrspatterntemplate.controller;
 
 import com.beratyesbek.cqrspatterntemplate.infrastructure.mediator.Mediator;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@RequiredArgsConstructor
+
 public class BaseController {
-    protected final Mediator mediator;
+    @Autowired
+    protected Mediator mediator;
 
 }
