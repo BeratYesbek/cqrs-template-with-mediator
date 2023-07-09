@@ -1,8 +1,6 @@
 package com.beratyesbek.cqrspatterntemplate.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,4 +30,8 @@ public class Product extends BaseEntity {
 
     @Column(name = COL_PRICE)
     private BigDecimal price;
+
+    @ManyToOne
+    @JoinColumn(name = COL_CATEGORY_ID, referencedColumnName = COL_ID)
+    private Category category;
 }

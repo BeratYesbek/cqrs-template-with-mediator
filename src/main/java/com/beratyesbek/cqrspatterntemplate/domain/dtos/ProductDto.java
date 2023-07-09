@@ -1,5 +1,6 @@
 package com.beratyesbek.cqrspatterntemplate.domain.dtos;
 
+import com.beratyesbek.cqrspatterntemplate.domain.entities.Category;
 import lombok.Builder;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ public record ProductDto(
         String name,
         String description,
         int quantity,
-        BigDecimal price
+        BigDecimal price,
+        CategoryDto category
 ) {
 }
