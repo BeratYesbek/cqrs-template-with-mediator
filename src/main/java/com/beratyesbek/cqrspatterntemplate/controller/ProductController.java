@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/products")
 public class ProductController extends BaseController {
 
+    public ProductController(Mediator mediator) {
+        super(mediator);
+    }
+
     @PostMapping
     public ResponseEntity<DataResult<ProductDto>> create(@RequestBody CreateProductCommand createProductCommand) {
         return ResponseEntity.ok(mediator.send(createProductCommand));

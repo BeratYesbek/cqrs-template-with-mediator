@@ -1,6 +1,4 @@
 package com.beratyesbek.cqrspatterntemplate.application.commands.product.create;
-
-import com.beratyesbek.cqrspatterntemplate.domain.dtos.CategoryDto;
 import com.beratyesbek.cqrspatterntemplate.domain.dtos.ProductDto;
 import com.beratyesbek.cqrspatterntemplate.domain.entities.Category;
 import com.beratyesbek.cqrspatterntemplate.domain.entities.Product;
@@ -34,8 +32,4 @@ public class CreateProductCommandHandler implements RequestHandler<CreateProduct
         Product product = productRepository.save(mapToProduct(createProductCommand,category.get()));
         return new SuccessDataResult<>(mapToProductDto(product),"Product has been created!!!");
     }
-
-
-
-
 }

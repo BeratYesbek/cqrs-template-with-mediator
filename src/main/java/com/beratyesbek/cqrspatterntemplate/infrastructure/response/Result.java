@@ -3,9 +3,11 @@ package com.beratyesbek.cqrspatterntemplate.infrastructure.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
 @AllArgsConstructor
-public sealed class Result permits DataResult, SuccessResult, ErrorResult {
+public sealed class Result implements Serializable permits DataResult, SuccessResult, ErrorResult {
 
     private String message;
 

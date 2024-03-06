@@ -1,8 +1,8 @@
 package com.beratyesbek.cqrspatterntemplate.domain.dtos;
 
-import com.beratyesbek.cqrspatterntemplate.domain.entities.Category;
 import lombok.Builder;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Builder
@@ -12,5 +12,5 @@ public record ProductDto(
         int quantity,
         BigDecimal price,
         CategoryDto category
-) {
+) implements Serializable {
 }

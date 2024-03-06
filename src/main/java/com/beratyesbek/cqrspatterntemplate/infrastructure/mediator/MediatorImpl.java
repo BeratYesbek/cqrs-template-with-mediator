@@ -14,12 +14,23 @@ public class MediatorImpl implements Mediator {
     @Override
     public <TRequest extends Request, TResponse extends Result> TResponse send(TRequest request) {
         if (request == null) {
-            throw  new NullPointerException(request.getClass().getName());
+            throw new IllegalArgumentException("Request cannot be null");
         }
-        Handler handlerAnnotation = request.getClass().getAnnotation(Handler.class);
-        Class<?> requestHandler  = handlerAnnotation.handler();
-        RequestHandler<TRequest, Result> handler = (RequestHandler<TRequest, Result>) context.getBean(requestHandler);
 
+        Handler handlerAnnotation = request.getClass().getAnnotation(Handler.class);
+
+        if (handlerAnnotation == null) {
+            throw new IllegalArgumentException("Handler annotation not found for request class: " + request.getClass().getName());
+        }
+
+        Class<?> requestHandler = handlerAnnotation.handler();
+        Object handlerBean = context.getBean(requestHandler);
+
+        if (!(handlerBean instanceof RequestHandler)) {
+            throw new IllegalArgumentException("Handler bean does not implement RequestHandler interface: " + requestHandler.getName());
+        }
+
+        RequestHandler<TRequest, Result> handler = (RequestHandler<TRequest, Result>) handlerBean;
         return (TResponse) handler.handle(request);
     }
 }

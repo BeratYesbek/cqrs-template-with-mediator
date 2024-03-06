@@ -1,4 +1,6 @@
 package com.beratyesbek.cqrspatterntemplate.infrastructure.mediator;
 
-public interface BaseRequest {
+import java.io.Serializable;
+
+public interface BaseRequest extends Serializable {
 }

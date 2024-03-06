@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 import static com.beratyesbek.cqrspatterntemplate.infrastructure.constants.HibernateColumnConstants.*;
@@ -14,7 +13,6 @@ import static com.beratyesbek.cqrspatterntemplate.infrastructure.constants.Hiber
 public abstract class BaseEntity {
 
     private final boolean DEFAULT_DELETED_VALUE = false;
-
 
     @Id
     @Column(name = COL_ID)
